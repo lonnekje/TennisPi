@@ -10,6 +10,8 @@ using namespace std;
 #define w 640
 #define h 480
 
+int i = 0;
+
 void MyLine(Mat img, Point start, Point end );
 
  int main( int argc, char** argv )
@@ -54,6 +56,8 @@ void MyLine(Mat img, Point start, Point end );
 
   imshow("Line Image", imgLine); //show the thresholded image
   imshow("Original", imgOriginal); //show the original image
+  cout << "image" << i << endl;
+  i++;
 
         if (waitKey(30) == 27) //wait for 'esc' key press for 30ms. If 'esc' key is pressed, break loop
        {
