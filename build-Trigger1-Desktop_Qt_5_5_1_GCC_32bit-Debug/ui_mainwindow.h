@@ -53,13 +53,15 @@ public:
         startButton->setGeometry(QRect(30, 50, 85, 27));
         triggerButton = new QPushButton(centralWidget);
         triggerButton->setObjectName(QStringLiteral("triggerButton"));
-        triggerButton->setGeometry(QRect(30, 80, 85, 27));
+        triggerButton->setGeometry(QRect(120, 50, 85, 27));
         stopButton = new QPushButton(centralWidget);
         stopButton->setObjectName(QStringLiteral("stopButton"));
-        stopButton->setGeometry(QRect(30, 110, 85, 27));
+        stopButton->setGeometry(QRect(210, 50, 85, 27));
         infoLabel = new QLabel(centralWidget);
         infoLabel->setObjectName(QStringLiteral("infoLabel"));
-        infoLabel->setGeometry(QRect(180, 80, 121, 71));
+        infoLabel->setGeometry(QRect(30, 90, 261, 61));
+        infoLabel->setStyleSheet(QLatin1String("font: 12pt \"Ubuntu\";\n"
+"background-color: rgb(242, 225, 202);"));
         pushButton = new QPushButton(centralWidget);
         pushButton->setObjectName(QStringLiteral("pushButton"));
         pushButton->setGeometry(QRect(120, 20, 85, 27));
