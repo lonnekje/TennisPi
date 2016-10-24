@@ -1,0 +1,46 @@
+#include "tpc.h"
+#include "ui_tpc.h"
+
+TPC::TPC(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::TPC)
+{
+    ui->setupUi(this);
+
+
+    QPushButton *Setupbut = new QPushButton("Setup", this);
+    Setupbut->move(10,10);
+    connect(Setupbut, SIGNAL(clicked()), this, SLOT(setupSlot()));
+
+    QPushButton *Setupdonebut = new QPushButton("Setup done", this);
+    Setupdonebut->move(10, 50);
+    connect(Setupdonebut, SIGNAL(clicked()), this, SLOT(setupdoneSlot()));
+}
+
+void TPC::setupSlot()
+{
+    ui->Textlabel->setText("Button setup clicked");
+    //mThread->start();
+   // mThread->Stop = false;
+    Setup s;
+    s.run();
+
+}
+
+void TPC::setupdoneSlot()
+{
+    //mThread->Stop = true;
+    ui->Textlabel->setText("Button setup done clicked");
+    Setup u;
+    u.ButtonDone();
+}
+
+void TPC::Setimage(QImage &img)
+{
+    ui->imglabel->setPixmap(QPixmap::fromImage(img));
+}
+
+TPC::~TPC()
+{
+    delete ui;
+}
