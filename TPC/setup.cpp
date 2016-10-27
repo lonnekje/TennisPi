@@ -1,8 +1,9 @@
 #include "setup.h"
+#include "ui_tpc.h"
 
-
-Setup::Setup()// : Button()
-{}
+Setup::Setup(): Button()
+{
+}
 
 
 void Setup::run()
@@ -79,7 +80,7 @@ void Setup::run()
 
             //cvShowImage("Setup", frame);
             TPC tpc;
-            tpc.Setimage(*rgbimg);
+            //tpc.Setimage(*rgbimg);
 
 
             // Wait for a keypress
@@ -122,12 +123,3 @@ void Setup::ButtonDone()
         //msleep(500);
 
 }
-
-void Setup::SetTo(bool &Var)
-{
-    if(j == 0)
-    {Var = false;}
-    else
-    {Var = true;}
-}
-

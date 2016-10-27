@@ -1,6 +1,11 @@
 #ifndef PLAY_H
 #define PLAY_H
 
+
+#include "opencv2/highgui/highgui.hpp"
+#include "opencv2/imgproc/imgproc.hpp"
+#include "opencv2/videoio.hpp"
+
 #include "button.h"
 
 #include <QWidget>
@@ -13,16 +18,15 @@
 
 #include <iostream>
 #include <vector>
-//using namespace cv;
-
+using namespace cv;
 
 
 class play : public Button
 {
-    //Q_OBJECT
+
 public:
-    explicit play(QObject *parent = 0);
-    void Buttondone(){};
+    explicit play();
+    void Buttondone();
 };
 
 #endif // PLAY_H

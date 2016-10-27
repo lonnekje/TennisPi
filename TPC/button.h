@@ -1,7 +1,7 @@
 #ifndef BUTTON_H
 #define BUTTON_H
 
-#include "tpc.h"
+//#include "tpc.h"
 
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
@@ -17,7 +17,7 @@
 #include <iostream>
 #include <vector>
 
-class Button
+class Button : public QObject
 {
 
     public:

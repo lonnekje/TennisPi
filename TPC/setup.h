@@ -6,8 +6,8 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/videoio.hpp"
 
-#include "tpc.h"
 #include "button.h"
+#include "tpc.h"
 
 #include <QWidget>
 #include <QLabel>
@@ -16,29 +16,26 @@
 #include <QMutex>
 #include <QObject>
 #include <QImage>
+#include <QString>
+#include <QPushButton>
+#include <QPixmap>
 
 #include <iostream>
 #include <vector>
-//using namespace cv;
+using namespace cv;
 
 
 
 
-class Setup //: public Button
+class Setup : public Button
 {
-    //Q_OBJECT
+    Q_OBJECT
 
 public:
     explicit Setup();
     void run();
-    void ButtonPressed(void);
+    void ButtonPressed(void){};
     void ButtonDone();
-    void SetTo(bool &Var);
-
-
-signals:
-    void valueChanged(const QImage*);
-
 
 private:
     int i = 0;

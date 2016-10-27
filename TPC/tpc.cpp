@@ -10,6 +10,7 @@ TPC::TPC(QWidget *parent) :
 
     QPushButton *Setupbut = new QPushButton("Setup", this);
     Setupbut->move(10,10);
+    //Setupbut->isEnabled()
     connect(Setupbut, SIGNAL(clicked()), this, SLOT(setupSlot()));
 
     QPushButton *Setupdonebut = new QPushButton("Setup done", this);
@@ -19,11 +20,10 @@ TPC::TPC(QWidget *parent) :
 
 void TPC::setupSlot()
 {
-    ui->Textlabel->setText("Button setup clicked");
-    //mThread->start();
-   // mThread->Stop = false;
+     ui->Textlabel->setText("Button setup clicked");
     Setup s;
     s.run();
+
 
 }
 
@@ -35,10 +35,8 @@ void TPC::setupdoneSlot()
     u.ButtonDone();
 }
 
-void TPC::Setimage(QImage &img)
-{
-    ui->imglabel->setPixmap(QPixmap::fromImage(img));
-}
+
+
 
 TPC::~TPC()
 {
