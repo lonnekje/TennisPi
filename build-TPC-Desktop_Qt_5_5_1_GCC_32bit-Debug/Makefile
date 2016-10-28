@@ -1222,7 +1222,43 @@ tpc.o: ../TPC/tpc.cpp ../TPC/tpc.h \
 		../../Qt/5.5/gcc/include/QtCore/QMutex \
 		../../Qt/5.5/gcc/include/QtCore/QObject \
 		../../Qt/5.5/gcc/include/QtGui/QImage \
-		ui_tpc.h
+		ui_tpc.h \
+		../../Qt/5.5/gcc/include/QtCore/QVariant \
+		../../Qt/5.5/gcc/include/QtWidgets/QAction \
+		../../Qt/5.5/gcc/include/QtWidgets/qaction.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qactiongroup.h \
+		../../Qt/5.5/gcc/include/QtWidgets/QApplication \
+		../../Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		../../Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
+		../../Qt/5.5/gcc/include/QtCore/qeventloop.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		../../Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		../../Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../../Qt/5.5/gcc/include/QtWidgets/QButtonGroup \
+		../../Qt/5.5/gcc/include/QtWidgets/qbuttongroup.h \
+		../../Qt/5.5/gcc/include/QtWidgets/QHeaderView \
+		../../Qt/5.5/gcc/include/QtWidgets/qheaderview.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qabstractitemview.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/5.5/gcc/include/QtCore/qabstractitemmodel.h \
+		../../Qt/5.5/gcc/include/QtCore/qitemselectionmodel.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qstyleoption.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qabstractspinbox.h \
+		../../Qt/5.5/gcc/include/QtGui/qvalidator.h \
+		../../Qt/5.5/gcc/include/QtCore/qregularexpression.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qslider.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qabstractslider.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qstyle.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qtabbar.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qrubberband.h \
+		../../Qt/5.5/gcc/include/QtWidgets/QMenuBar \
+		../../Qt/5.5/gcc/include/QtWidgets/qmenubar.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qmenu.h \
+		../../Qt/5.5/gcc/include/QtWidgets/QStatusBar \
+		../../Qt/5.5/gcc/include/QtWidgets/qstatusbar.h \
+		../../Qt/5.5/gcc/include/QtWidgets/QToolBar \
+		../../Qt/5.5/gcc/include/QtWidgets/qtoolbar.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o tpc.o ../TPC/tpc.cpp
 
 button.o: ../TPC/button.cpp ../TPC/button.h \
@@ -1532,7 +1568,44 @@ setup.o: ../TPC/setup.cpp ../TPC/setup.h \
 		../../Qt/5.5/gcc/include/QtWidgets/qpushbutton.h \
 		../../Qt/5.5/gcc/include/QtWidgets/qabstractbutton.h \
 		../../Qt/5.5/gcc/include/QtGui/QPixmap \
-		../../Qt/5.5/gcc/include/QtGui/QImage
+		../../Qt/5.5/gcc/include/QtGui/QImage \
+		ui_tpc.h \
+		../../Qt/5.5/gcc/include/QtCore/QVariant \
+		../../Qt/5.5/gcc/include/QtWidgets/QAction \
+		../../Qt/5.5/gcc/include/QtWidgets/qaction.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qactiongroup.h \
+		../../Qt/5.5/gcc/include/QtWidgets/QApplication \
+		../../Qt/5.5/gcc/include/QtWidgets/qapplication.h \
+		../../Qt/5.5/gcc/include/QtCore/qcoreapplication.h \
+		../../Qt/5.5/gcc/include/QtCore/qeventloop.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qdesktopwidget.h \
+		../../Qt/5.5/gcc/include/QtGui/qguiapplication.h \
+		../../Qt/5.5/gcc/include/QtGui/qinputmethod.h \
+		../../Qt/5.5/gcc/include/QtWidgets/QButtonGroup \
+		../../Qt/5.5/gcc/include/QtWidgets/qbuttongroup.h \
+		../../Qt/5.5/gcc/include/QtWidgets/QHeaderView \
+		../../Qt/5.5/gcc/include/QtWidgets/qheaderview.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qabstractitemview.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qabstractscrollarea.h \
+		../../Qt/5.5/gcc/include/QtCore/qabstractitemmodel.h \
+		../../Qt/5.5/gcc/include/QtCore/qitemselectionmodel.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qabstractitemdelegate.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qstyleoption.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qabstractspinbox.h \
+		../../Qt/5.5/gcc/include/QtGui/qvalidator.h \
+		../../Qt/5.5/gcc/include/QtCore/qregularexpression.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qslider.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qabstractslider.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qstyle.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qtabbar.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qrubberband.h \
+		../../Qt/5.5/gcc/include/QtWidgets/QMenuBar \
+		../../Qt/5.5/gcc/include/QtWidgets/qmenubar.h \
+		../../Qt/5.5/gcc/include/QtWidgets/qmenu.h \
+		../../Qt/5.5/gcc/include/QtWidgets/QStatusBar \
+		../../Qt/5.5/gcc/include/QtWidgets/qstatusbar.h \
+		../../Qt/5.5/gcc/include/QtWidgets/QToolBar \
+		../../Qt/5.5/gcc/include/QtWidgets/qtoolbar.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o setup.o ../TPC/setup.cpp
 
 play.o: ../TPC/play.cpp ../TPC/play.h \
@@ -1696,9 +1769,18 @@ moc_setup.o: moc_setup.cpp
 
 ####### Install
 
-install:  FORCE
+install_target: first FORCE
+	@test -d $(INSTALL_ROOT)/home/TPC || mkdir -p $(INSTALL_ROOT)/home/TPC
+	-$(INSTALL_PROGRAM) $(QMAKE_TARGET) $(INSTALL_ROOT)/home/TPC/$(QMAKE_TARGET)
 
-uninstall:  FORCE
+uninstall_target: FORCE
+	-$(DEL_FILE) $(INSTALL_ROOT)/home/TPC/$(QMAKE_TARGET)
+	-$(DEL_DIR) $(INSTALL_ROOT)/home/TPC/ 
+
+
+install: install_target  FORCE
+
+uninstall: uninstall_target  FORCE
 
 FORCE:
 

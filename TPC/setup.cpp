@@ -62,8 +62,6 @@ void Setup::run()
             //cvCvtColor(frame, image, CV_BGR2RGB);
 
 
-
-
             QImage *rgbimg= new QImage(frame->width, frame->height, QImage::Format_RGB32);
 
             for (int y=0;y<frame->height;y++)
@@ -80,7 +78,7 @@ void Setup::run()
 
             //cvShowImage("Setup", frame);
             TPC tpc;
-            //tpc.Setimage(*rgbimg);
+            tpc.Setimage(*rgbimg);
 
 
             // Wait for a keypress

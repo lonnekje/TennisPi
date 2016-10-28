@@ -18,6 +18,9 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = TPC
 TEMPLATE = app
 
+target.path = /home/TPC
+INSTALLS += target
+
 
 DEFINES += APP_VERSION=\\\"1.3.2\\\"
 

@@ -35,6 +35,10 @@ void TPC::setupdoneSlot()
     u.ButtonDone();
 }
 
+void TPC::Setimage(QImage &img)
+{
+    ui->imglabel->setPixmap(QPixmap::fromImage(img));
+}
 
 
 
