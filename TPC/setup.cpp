@@ -2,13 +2,16 @@
 #include "ui_tpc.h"
 
 Setup::Setup(): Button()
+
 {
 }
 
-
 void Setup::run()
 {
-    std::cout << "Function Button Pressed Setup" << std::endl;
+    // ///////////////////////////////////////////////////////////////////////////////
+    // Initialize camera, grab frame
+    // ///////////////////////////////////////////////////////////////////////////////
+
     // Initialize capturing live feed from the camera
     CvCapture* capture = 0;
     capture = cvCaptureFromCAM(0);
@@ -23,46 +26,40 @@ void Setup::run()
     //cvNamedWindow("Setup");
 
     // This image holds the "scribble" data...
-    IplImage* imgScribble = NULL;
+    //IplImage* imgScribble = NULL;
     IplImage* frame = NULL;
 
-    do {
-            i++;
-            std::cout <<"i: "<< i << std::endl;
-            std::cout <<"j:  " << j << std::endl;
+do{
 
-            //Setup s;
-           // s.SetTo(Stop);
+    frame = cvQueryFrame(capture);
 
-            // Will hold a frame captured from the camera
+    // If we couldn't grab a frame... quit
+    if(!frame)
+        //break;
 
-            frame = cvQueryFrame(capture);
+    // If this is the first frame, we need to initialize it
+    if(frame == NULL)
+    {
+      frame = cvCreateImage(cvGetSize(frame), 8, 3);
+    }
+    // ///////////////////////////////////////////////////////////////////////////////
+    // Image processing; Drawing lines
+    // ///////////////////////////////////////////////////////////////////////////////
 
-            // If we couldn't grab a frame... quit
-            if(!frame)
-                break;
-
-            // If this is the first frame, we need to initialize it
-            if(imgScribble == NULL)
-            {
-              imgScribble = cvCreateImage(cvGetSize(frame), 8, 3);
-            }
-
-            // Draw a yellow line from the previous point to the current point
-            cvLine(imgScribble, cvPoint(0, h-40), cvPoint(w, h-40), cvScalar(0,255,255), 5);
-            cvLine(imgScribble, cvPoint(0, h-80), cvPoint(w, h-80), cvScalar(0,255,255), 5);
-            cvLine(imgScribble, cvPoint(0, h-200), cvPoint(w, h-200), cvScalar(0,255,255), 5);
-            cvLine(imgScribble, cvPoint(0, h-190), cvPoint(w, h-190), cvScalar(0,255,255), 5);
-            cvLine(imgScribble, cvPoint(0, h), cvPoint(w-400, h-200), cvScalar(0,255,255), 5);
-            cvLine(imgScribble, cvPoint(w+80, h), cvPoint(w-160, h-200), cvScalar(0,255,255), 5);
-
-            // Add the scribbling image and the frame...
-            cvAdd(frame, imgScribble, frame);
-            //cvResize(frame, frame, Size(482, 301), 0, 0, INTER_LINEAR);
-            //cvCvtColor(frame, image, CV_BGR2RGB);
+   // Draw a yellow line from the previous point to the current point
+    cvLine(frame, cvPoint(0, h-40), cvPoint(w, h-40), cvScalar(0,255,255), 5);
+    cvLine(frame, cvPoint(0, h-80), cvPoint(w, h-80), cvScalar(0,255,255), 5);
+    cvLine(frame, cvPoint(0, h-200), cvPoint(w, h-200), cvScalar(0,255,255), 5);
+    cvLine(frame, cvPoint(0, h-190), cvPoint(w, h-190), cvScalar(0,255,255), 5);
+    cvLine(frame, cvPoint(0, h), cvPoint(w-400, h-200), cvScalar(0,255,255), 5);
+    cvLine(frame, cvPoint(w+80, h), cvPoint(w-160, h-200), cvScalar(0,255,255), 5);
 
 
-            QImage *rgbimg= new QImage(frame->width, frame->height, QImage::Format_RGB32);
+    // ///////////////////////////////////////////////////////////////////////////////
+    // Convert Image from IPLImage to QImage
+    // ///////////////////////////////////////////////////////////////////////////////
+
+    QImage *rgbimg= new QImage(frame->width, frame->height, QImage::Format_RGB32);
 
             for (int y=0;y<frame->height;y++)
             {
@@ -76,48 +73,32 @@ void Setup::run()
 
 
 
-            //cvShowImage("Setup", frame);
-            TPC tpc;
-            tpc.Setimage(*rgbimg);
-
-
-            // Wait for a keypress
-            int c = cvWaitKey(10);
-            if(c!=-1)
-            {
-              // If pressed, break out of the loop
-              break;
-            }
-
-       /* QMutex mutex;
+        QMutex mutex;
         // prevent other threads from changing the "Stop" value
         mutex.lock();
-        if(this->Stop) break;
-
+        if(this->bsStop) break;
+        mutex.unlock();
 
         // emit the signal for the count label
-        emit valueChanged(rgbimg);
-        mutex.unlock();
-            if(j==3333)
-            {
-                break;
-            }*/
-     } while(i <= 50);
+        emit valueChanged(i, *rgbimg);
 
-    std::cout << "done " << std::endl;
-    //when done
-    cv::destroyWindow("Setup");
-    // We're done using the camera. Other applications can now use it
-    cvReleaseCapture(&capture);
-    cvReleaseImage(&frame);
+        // slowdown the count change, msec
+        usleep(500);
 
-}
+        // Wait for a keypress
+        int c = cvWaitKey(10);
+        if(c!=-1)
+        {
+          // If pressed, break out of the loop
+         break;
+        }
+     }while(bsStop == false);
 
-void Setup::ButtonDone()
-{
+    // ///////////////////////////////////////////////////////////////////////////////
+    // Release capture and image
+    // ///////////////////////////////////////////////////////////////////////////////
 
-    j = 3333;
-        std::cout << "j: "<< j << std::endl;
-        //msleep(500);
+        cvReleaseCapture(&capture);
+        cvReleaseImage(&frame);
 
 }

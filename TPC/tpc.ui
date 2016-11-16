@@ -6,19 +6,35 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>957</width>
-    <height>456</height>
+    <width>800</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>TPC</string>
   </property>
+  <property name="styleSheet">
+   <string notr="true">QPushButton {
+	border-style: outset;
+	background-color: &quot;red&quot;;
+	font: bold 14px;
+	color: rgb(225, 225, 225);
+	font: 11pt &quot;DejaVu Sans Mono&quot;;
+}
+QPushButton:pressed {
+	background-color: rgb(96, 208, 114);
+	border-style: inset;
+}
+QWidget{ 
+	background-color: rgb(65, 65, 65);
+}</string>
+  </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QLabel" name="Textlabel">
     <property name="geometry">
      <rect>
-      <x>38</x>
-      <y>91</y>
+      <x>30</x>
+      <y>310</y>
       <width>121</width>
       <height>101</height>
      </rect>
@@ -33,10 +49,10 @@
    <widget class="QLabel" name="imglabel">
     <property name="geometry">
      <rect>
-      <x>320</x>
-      <y>30</y>
-      <width>571</width>
-      <height>341</height>
+      <x>200</x>
+      <y>10</y>
+      <width>591</width>
+      <height>401</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -52,7 +68,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>957</width>
+     <width>800</width>
      <height>20</height>
     </rect>
    </property>

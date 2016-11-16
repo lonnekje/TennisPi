@@ -21,9 +21,7 @@ class Button : public QObject
 {
 
     public:
-         Button();
-        void virtual ButtonPressed() = 0;
-        void virtual ButtonDone() = 0;
+         Button(QObject *parent = 0, bool b = false);
         void virtual run() = 0;
 };
 

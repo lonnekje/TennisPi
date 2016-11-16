@@ -7,13 +7,16 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QPixmap>
+#include <QDialog>
 #include "setup.h"
+#include "play.h"
 
 namespace Ui {
 class TPC;
 }
 
 class Setup;
+class play;
 
 class TPC : public QMainWindow
 {
@@ -21,13 +24,19 @@ class TPC : public QMainWindow
 
 public:
     explicit TPC(QWidget *parent = 0);
-    void Setimage(QImage &img);
-
+    Setup *mThread;
+    play *pThread;
     ~TPC();
+
+public slots:
+    void onValueChanged(int, QImage);
 
 private slots:
     void setupSlot();
     void setupdoneSlot();
+
+    void playSlot();
+    void playdoneSlot();
 
 private:
     int number = 0;

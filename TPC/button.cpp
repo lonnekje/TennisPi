@@ -1,6 +1,6 @@
 #include "button.h"
 
-Button::Button()
+Button::Button(QObject *parent, bool b)
 {
 
 }
