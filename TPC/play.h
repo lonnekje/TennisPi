@@ -9,6 +9,7 @@
 #include "tpc.h"
 
 #include <unistd.h>
+#include <math.h>
 
 #include <QWidget>
 #include <QLabel>

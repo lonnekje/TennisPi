@@ -186,8 +186,6 @@ do{
 
         std::cout << movedX <<", "<< movedY  <<", "<< speed <<", km/h "<< result << std::endl;
 
-
-
     }
 
 
