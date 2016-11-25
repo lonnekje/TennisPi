@@ -38,7 +38,6 @@ HEADERS  += tpc.h \
     ../../opencv/opencv/modules/videoio/include/opencv2/videoio.hpp \
     play.h
 
-    play.h
 
 FORMS    += tpc.ui
 
