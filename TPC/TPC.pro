@@ -9,7 +9,7 @@ CONFIG += console c++11
 CONFIG -= app_bundle
 CONFIG += qt
 
-QT_CONFIG -= no-pkg-config
+CONFIG -= no-pkg-config
 CONFIG += link_pkgconfig
 PKGCONFIG += opencv
 
@@ -33,9 +33,11 @@ SOURCES += main.cpp\
 HEADERS  += tpc.h \
     button.h \
     setup.h\
-    ../../Github/opencv/modules/highgui/include/opencv2/highgui.hpp \
-    ../../Github/opencv/modules/imgproc/include/opencv2/imgproc.hpp \
-    ../../Github/opencv/modules/videoio/include/opencv2/videoio.hpp \
+    ../../opencv/opencv/modules/highgui/include/opencv2/highgui.hpp \
+    ../../opencv/opencv/modules/imgproc/include/opencv2/imgproc.hpp \
+    ../../opencv/opencv/modules/videoio/include/opencv2/videoio.hpp \
+    play.h
+
     play.h
 
 FORMS    += tpc.ui
@@ -43,12 +45,12 @@ FORMS    += tpc.ui
 
 QMAKE_CXXFLAGS += -Wall
 
+ INCLUDEPATH += /home/lonneke/opencv/opencv/modules
+#INCLUDEPATH += ../opencv/opencv/include/opencv
+#INCLUDEPATH += ../opencv/opencv/include/opencv2
+#INCLUDEPATH += /usr/local/include/opencv
 
-INCLUDEPATH += ../Github/opencv/include/opencv
-INCLUDEPATH += ../Github/opencv/include/opencv2
-INCLUDEPATH += /usr/local/include/opencv
-
-LIBS += -L/home/lonneke/Github/opencv/build \
+LIBS += -L/home/lonneke/opencv/opencv/platforms/linux/build \
      -lopencv_calib3d\
      -lopencv_core\
      -lopencv_features2d \
