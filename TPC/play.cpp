@@ -23,17 +23,21 @@ void play::run()
 
 
     // The window
-    cvNamedWindow("Control");
+    cvNamedWindow("Output");
 
     // This image holds the "scribble" data...
     //IplImage* imgScribble = NULL;
     IplImage* frame = NULL;
     IplImage* imgBallTresh = NULL;
     IplImage* imgHSV = NULL;
+
+    cv::Mat gray;
+    cv::Mat canny;
     //IplImage* contours = NULL;
 
 
 do{
+    y++;
 
     frame = cvQueryFrame(capture);
 
@@ -49,26 +53,96 @@ do{
     }
 
 
-
-
     // ///////////////////////////////////////////////////////////////////////////////
     // Do some image processing here
     // ///////////////////////////////////////////////////////////////////////////////
-    imgBallTresh = cvCreateImage(cvGetSize(frame), 8, 1);
+    Mat color(cv::cvarrToMat(frame, false, true, 0, 0));
+    // Convert it to gray
+       cv::cvtColor( color, gray, CV_BGR2GRAY );
+
+       // compute canny (don't blur with that image quality!!)
+       cv::Canny(gray, canny, 200,20);
+       //cv::namedWindow("canny2"); cv::imshow("canny2", canny>0);
+
+       std::vector<cv::Vec3f> circles;
+
+       /// Apply the Hough Transform to find the circles
+       cv::HoughCircles( gray, circles, CV_HOUGH_GRADIENT, 1, 60, 200, 20, 0, 0 );
+
+       /// Draw the circles detected
+       for( size_t i = 0; i < circles.size(); i++ )
+       {
+           Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
+           int radius = cvRound(circles[i][2]);
+           cv::circle( color, center, 3, Scalar(0,255,255), -1);
+           cv::circle( color, center, radius, Scalar(0,0,255), 1 );
+       }
+
+       //compute distance transform:
+       cv::Mat dt;
+       cv::distanceTransform(255-(canny>0), dt, CV_DIST_L2 ,3);
+       cv::namedWindow("distance transform"); cv::imshow("distance transform", dt/255.0f);
+
+       // test for semi-circles:
+       float minInlierDist = 2.0f;
+       for( size_t i = 0; i < circles.size(); i++ )
+       {
+           // test inlier percentage:
+           // sample the circle and check for distance to the next edge
+           unsigned int counter = 0;
+           unsigned int inlier = 0;
+
+           cv::Point2f center((circles[i][0]), (circles[i][2]));
+           float radius = (circles[i][2]);
+
+           // maximal distance of inlier might depend on the size of the circle
+           float maxInlierDist = radius/25.0f;
+           if(maxInlierDist<minInlierDist) maxInlierDist = minInlierDist;
+
+           //TODO: maybe paramter incrementation might depend on circle size!
+           for(float t =0; t<2*3.14159265359f; t+= 0.1f)
+           {
+               counter++;
+               float cX = radius*cos(t) + circles[i][0];
+               float cY = radius*sin(t) + circles[i][3];
+
+               if(dt.at<float>(cY,cX) < maxInlierDist)
+               {
+                   inlier++;
+                   cv::circle(color, cv::Point2i(cX,cY),3, cv::Scalar(0,255,0));
+               }
+              else
+                   cv::circle(color, cv::Point2i(cX,cY),3, cv::Scalar(255,0,0));
+           }
+           std::cout << 100.0f*(float)inlier/(float)counter << " % of a circle with radius " << radius << " detected. Loop:  " << y << std::endl;
+       }
+
+       cv::imshow("Output", color);
+
+
+    /*imgBallTresh = cvCreateImage(cvGetSize(frame), 8, 1);
 
     imgHSV = cvCreateImage(cvGetSize(frame), 8, 3);
     cvCvtColor(frame, imgHSV, CV_BGR2HSV);
 
 
-    cvInRangeS(imgHSV, CvScalar(30,130,130), CvScalar(60,255,255), imgBallTresh);
+    cvInRangeS(imgHSV, CvScalar(30,90,130), CvScalar(40,255,255), imgBallTresh);
 
 
 
     Mat imageThreshMat(cv::cvarrToMat(imgBallTresh, false, true, 0, 0));
-    Mat frameMat(cv::cvarrToMat(frame, false, true, 0, 0));
+    //Mat frameMat(cv::cvarrToMat(frame, false, true, 0, 0));
 
 
     GaussianBlur(imageThreshMat,imageThreshMat,Size(9,9),2,2);
+
+
+    cv::erode(imageThreshMat, imageThreshMat, Mat(), Point(-1, -1), 2, 1, 1 );
+    cv::dilate(imageThreshMat, imageThreshMat, Mat(), Point(-1, -1), 2, 1, 1);
+
+    cv::dilate(imageThreshMat, imageThreshMat, Mat(), Point(-1, -1), 2, 1, 1);
+    cv::erode(imageThreshMat, imageThreshMat, Mat(), Point(-1, -1), 2, 1, 1 );
+
 
 
     // Find the contours.
@@ -186,8 +260,6 @@ do{
 
         std::cout << movedX <<", "<< movedY  <<", "<< speed <<", km/h "<< result << std::endl;
 
-
-
     }
 
 
@@ -231,7 +303,7 @@ do{
         }
 
 
-        delete moments;
+        delete moments;*/
 
      }while(Stop == false);
 
