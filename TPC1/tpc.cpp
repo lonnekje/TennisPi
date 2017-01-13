@@ -12,6 +12,7 @@ TPC::TPC(QWidget *parent) :
     Setupbut->move(10,50);
     connect(Setupbut, SIGNAL(clicked()), this, SLOT(setupSlot()));
 
+
     QPushButton *Setupdonebut = new QPushButton("SETUP DONE", this);
     Setupdonebut->move(10, 80);
     connect(Setupdonebut, SIGNAL(clicked()), this, SLOT(setupdoneSlot()));
@@ -23,11 +24,6 @@ TPC::TPC(QWidget *parent) :
     QPushButton *Playdonebut = new QPushButton("PLAY DONE", this);
     Playdonebut->move(10, 140);
     connect(Playdonebut, SIGNAL(clicked()), this, SLOT(playdoneSlot()));
-
-    QPushButton *Triggerbut = new QPushButton("TRIGGER", this);
-    Triggerbut->move(10, 170);
-    connect(Triggerbut, SIGNAL(clicked()), this, SLOT(Triggered()));
-
 
 
     // create an instance of Setup and Play
@@ -66,30 +62,18 @@ void TPC::setupdoneSlot()
 
 void TPC::playSlot()
 {
-    pThread->Stop = true;
-
     std::cout << "Function Button Pressed Play" << std::endl;
-    //make directory for this serie
-
-        pThread->Stop = false;
-        pThread->run();
-    //}
-    //else{std::cout << "Fault with making folder!" << std::endl;}
+    pThread->Stop = false;
+    pThread->run();
 
 }
 
 void TPC::playdoneSlot()
 {
-    std::cout << "Function Button Pressed Play Done" << std::endl;
+    std::cout << std::endl << "Function Button Pressed Play Done" << std::endl;
     pThread->Stop = true;
     ui->imglabel->clear();
 
-}
-
-void TPC::Triggered()
-{
-    std::cout << "Triggered" << std::endl;
-    pThread->Trig = true;
 }
 
 

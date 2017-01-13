@@ -8,8 +8,6 @@
 #include "button.h"
 #include "tpc.h"
 
-#include <raspicam/raspicam_cv.h>
-
 #include <unistd.h>
 
 #include <QWidget>

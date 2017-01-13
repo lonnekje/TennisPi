@@ -26,17 +26,17 @@ DEFINES += APP_VERSION=\\\"1.3.2\\\"
 
 SOURCES += main.cpp\
         tpc.cpp \
-        button.cpp \
-        setup.cpp \
-        play.cpp
+    button.cpp \
+    setup.cpp \
+    play.cpp
 
 HEADERS  += tpc.h \
-        button.h \
-        setup.h\
-        ../../opencv/opencv/modules/highgui/include/opencv2/highgui.hpp \
-        ../../opencv/opencv/modules/imgproc/include/opencv2/imgproc.hpp \
-        ../../opencv/opencv/modules/videoio/include/opencv2/videoio.hpp \
-        play.h
+    button.h \
+    setup.h\
+    ../../opencv/opencv/modules/highgui/include/opencv2/highgui.hpp \
+    ../../opencv/opencv/modules/imgproc/include/opencv2/imgproc.hpp \
+    ../../opencv/opencv/modules/videoio/include/opencv2/videoio.hpp \
+    play.h
 
 
 FORMS    += tpc.ui
@@ -62,8 +62,4 @@ LIBS += -L/home/lonneke/opencv/opencv/platforms/linux/build \
      -lopencv_stitching\
      -lopencv_superres\
      -lopencv_video\
-     -lopencv_videostab\
-     -lopencv_tracking\
-     -lraspicam\
-     -lraspicam_cv
-
+     -lopencv_videostab

@@ -10,10 +10,6 @@
 #include <QDialog>
 #include "setup.h"
 #include "play.h"
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <chrono>
-#include <ctime>
 
 namespace Ui {
 class TPC;
@@ -30,10 +26,6 @@ public:
     explicit TPC(QWidget *parent = 0);
     Setup *mThread;
     play *pThread;
-
-    std::string getName(){return filename;}
-
-
     ~TPC();
 
 public slots:
@@ -46,16 +38,10 @@ private slots:
     void playSlot();
     void playdoneSlot();
 
-    void Triggered();
-
 private:
     int number = 0;
     int state = 0;
-    int result = 0;
     Ui::TPC *ui;
-
-    std::string filename;
-
 };
 
 #endif // TPC_H
