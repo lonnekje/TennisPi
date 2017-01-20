@@ -44,8 +44,8 @@ signals:
 private:
     int i = 0;
     int j = 0;
-    int w = 640;
-    int h = 480;
+    int w = 600;
+    int h = 450;
     int y = 0;
 
 };

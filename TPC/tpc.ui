@@ -34,7 +34,7 @@ QWidget{
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>310</y>
+      <y>210</y>
       <width>121</width>
       <height>101</height>
      </rect>
@@ -51,8 +51,8 @@ QWidget{
      <rect>
       <x>200</x>
       <y>10</y>
-      <width>591</width>
-      <height>401</height>
+      <width>531</width>
+      <height>331</height>
      </rect>
     </property>
     <property name="styleSheet">
@@ -69,7 +69,7 @@ QWidget{
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>19</height>
+     <height>27</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

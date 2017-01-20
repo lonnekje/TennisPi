@@ -65,5 +65,6 @@ LIBS += -L/home/lonneke/opencv/opencv/platforms/linux/build \
      -lopencv_videostab\
      -lopencv_tracking\
      -lraspicam\
-     -lraspicam_cv
+     -lraspicam_cv\
+     -lwiringPi
 

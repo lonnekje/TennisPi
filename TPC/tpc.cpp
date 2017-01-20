@@ -40,6 +40,14 @@ TPC::TPC(QWidget *parent) :
 
     connect(pThread, SIGNAL(valueChanged(int, QImage)),
             this, SLOT(onValueChanged(int,QImage)));
+
+        //pinMode(2, OUTPUT)
+
+        //playSlot();
+        //std::cout <<  << std::endl;
+
+
+
 }
 
 void TPC::onValueChanged(int count, QImage img)
@@ -66,10 +74,10 @@ void TPC::setupdoneSlot()
 
 void TPC::playSlot()
 {
+
     pThread->Stop = true;
 
     std::cout << "Function Button Pressed Play" << std::endl;
-    //make directory for this serie
 
         pThread->Stop = false;
         pThread->run();
@@ -91,6 +99,8 @@ void TPC::Triggered()
     std::cout << "Triggered" << std::endl;
     pThread->Trig = true;
 }
+
+
 
 
 

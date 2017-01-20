@@ -37,7 +37,8 @@
 #include <iostream>
 #include <vector>
 
-#define BUFFERSIZE 7
+#define BUFFERSIZE 3
+#define BUTTON_PIN 0
 
 class play : public Button
 {
@@ -46,9 +47,14 @@ class play : public Button
     public:
         explicit play();
         void run();
+        void myFriend();
+        void Trigger();
 
-        bool Stop=false;
-        bool Trig=false;
+
+        bool Stop = false;
+        bool Trig = false;
+        bool Trig2 = false;
+
 
     signals:
         void valueChanged(int, QImage);
@@ -57,6 +63,7 @@ class play : public Button
         int y = 0;
         int i = 0;
         int x = 0;
+        int z = 0;
 
         int posX = 0;
         int posY = 0;
@@ -65,6 +72,7 @@ class play : public Button
 
         int res=0;
         int result = 0;
+        int postimg = 0;
 
         std::string date;
         std::string slash = "/";
@@ -72,6 +80,7 @@ class play : public Button
         std::string temppath = "/home/pi/Desktop/TennisPi/";
 
         bool firsttime = true;
+        bool init = false;
 
         // Initialize capturing live feed from the camera
         raspicam::RaspiCam_Cv capture;
@@ -84,6 +93,7 @@ class play : public Button
         cv::Mat color;
         cv::Mat gray;
         cv::Mat imgLine;
+        cv::Mat post;
 
         cv::Rect2d roi;
 

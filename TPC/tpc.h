@@ -14,6 +14,7 @@
 #include <sys/types.h>
 #include <chrono>
 #include <ctime>
+#include <wiringPi.h>
 
 namespace Ui {
 class TPC;
@@ -38,6 +39,8 @@ public:
 
 public slots:
     void onValueChanged(int, QImage);
+    void Triggered();
+
 
 private slots:
     void setupSlot();
@@ -46,7 +49,6 @@ private slots:
     void playSlot();
     void playdoneSlot();
 
-    void Triggered();
 
 private:
     int number = 0;
