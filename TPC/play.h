@@ -37,7 +37,7 @@
 #include <iostream>
 #include <vector>
 
-#define BUFFERSIZE 3
+#define BUFFERSIZE 9
 #define BUTTON_PIN 0
 
 class play : public Button
@@ -47,13 +47,13 @@ class play : public Button
     public:
         explicit play();
         void run();
-        void myFriend();
-        void Trigger();
+        static void myInterrupt();
+
+
 
 
         bool Stop = false;
         bool Trig = false;
-        bool Trig2 = false;
 
 
     signals:
@@ -81,6 +81,7 @@ class play : public Button
 
         bool firsttime = true;
         bool init = false;
+        static bool Trig2;
 
         // Initialize capturing live feed from the camera
         raspicam::RaspiCam_Cv capture;

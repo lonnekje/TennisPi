@@ -1,37 +1,19 @@
 #include "play.h"
 
+bool play::Trig2;
+
 play::play() : Button()
 {
 
 }
 
-
-void myInterrupt()
+void play::myInterrupt()
 {
-
-    std::cout<<"interrupt"<<std::endl;
-    play a;
-    a.myFriend();
-
-    std::cout << "Trig: " << a.Trig << std::endl;
-
-
-
-
-    delay(500);
+    play::Trig2 = true;
+    delayMicroseconds(1500);
+    std::cout << "Trig is set to " << Trig2 << std::endl;
 
 }
-
-void play::myFriend()
-{
-    Trig = true;
-
-    TPC t;
-    t.Triggered();
-}
-
-
-
 
 void play::run()
 {
@@ -86,7 +68,6 @@ void play::run()
 
 
 
-
 do{
 
         QTime mTimer;
@@ -100,27 +81,25 @@ do{
         cv::resize(input, frame, Size(600,450));
 
 
-
-
         // ///////////////////////////////////////////////////////////////////////////////
         // Circulair buffer implementation
         // ///////////////////////////////////////////////////////////////////////////////
 
         buffer.push_back(frame);
-        //std::cout << "Trig in func: " << Trig << std::endl;
+        //std::cout << "Trig in func: " << Trig2 << std::endl;
         int nMseconds = mTimer.elapsed();
 
-        std::cout << "Trigger process time: " << nMseconds << std::endl;
+        //std::cout << "Trigger process time: " << nMseconds << std::endl;
 
-        if(Trig )
+        if(Trig || Trig2)
            {
             postimg = (BUFFERSIZE - 1) / 2;
 
             for(int r=0;r<postimg;r++)
             {
                 capture.grab();
-                capture.retrieve(post);
-                cv::resize(post, frame, Size(640,480));
+                capture.retrieve(input);
+                cv::resize(input, frame, Size(600,450));
                 buffer.push_back(frame);
             }
 
@@ -168,50 +147,20 @@ do{
                             // Frame to use buffer[x]
                             // ///////////////////////////////////////////////////////////////////////////////
 
-                            /*cv::cvtColor(buffer[x], HSVimg, COLOR_RGB2HSV);
-                            cv::inRange(HSVimg, Scalar(29,86,90), Scalar(64,255,255), imgBallTresh);
 
-                            cv::erode(imgBallTresh, imgBallTresh, getStructuringElement(MORPH_ELLIPSE, Size(5,5)));
-                            cv::dilate(imgBallTresh, imgBallTresh, getStructuringElement(MORPH_ELLIPSE, Size(5,5)));
-                            cv::dilate(imgBallTresh, imgBallTresh, getStructuringElement(MORPH_ELLIPSE, Size(5,5)));
-                            cv::erode(imgBallTresh, imgBallTresh, getStructuringElement(MORPH_ELLIPSE, Size(5,5)));
-
-                            cv::Moments oMoments = moments(imgBallTresh);
-
-                            double dM01=oMoments.m01;
-                            double dM10=oMoments.m10;
-                            double dArea = oMoments.m00;
-
-                            if(dArea > 10000)
-                            {
-                                posX = dM10/dArea;
-                                posY = dM01/dArea;
-
-                                if(iLastX >= 0 && iLastY >= 0 && posX >= 0 && posY >= 0)
-                                {
-                                    cv::line(imgLine, Point(posX, posY), Point(0, 0), Scalar(0,0,255), 2);
-                                }
-
-                                iLastX=posX;
-                                iLastY=posY;
-                            }
-
-                            std::cout << "Xpos = " << posX << "Ypos = " << posY << std::endl;
-
-
-                            input = input + imgLine;*/
 
                             cv::cvtColor(buffer[x], gray, COLOR_RGB2GRAY);
-                            //cv::GaussianBlur(gray,gray, cv::Size(5,5), 1, 1);
 
-                            std::vector<cv::Vec3f> circles;
+
+                            /*std::vector<cv::Vec3f> circles;
 
                             cv::HoughCircles(gray, circles, CV_HOUGH_GRADIENT,
+
                                              1, //Accumulator resolution(size of the image / 2)
                                              1, //Minimum distance between two circles
                                              100, // Canny high threshold
-                                             16, // Minimum number of votes
-                                             0,6); //Minimum and maximum radius
+                                             15, // Minimum number of votes
+                                             4, 10); //Minimum and maximum radius
 
                             std::cout << "Amount of circles: " << circles.size() << std::endl;
 
@@ -227,7 +176,7 @@ do{
                             std::cout << "X: " << (*itc)[0] << " Y: " << (*itc)[1] << " Radius: " << (*itc)[2] << std::endl;
 
                                 itc++;
-                            }
+                            }*/
 
 
                             // ///////////////////////////////////////////////////////////////////////////////
@@ -239,6 +188,7 @@ do{
                         }
 
                         Trig=false;
+                        Trig2=false;
                     }
                     else
                     {std::cout << "Could NOT make a folder, canceled." << std::endl;}
